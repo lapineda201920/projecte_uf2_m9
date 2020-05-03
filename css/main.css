@@ -1,0 +1,162 @@
+*{
+
+    font-family: "Courier New", Courier, monospace;
+}
+
+/*---------------------------------*/
+
+header{
+
+    background-color:#8d1b1b;
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 30px;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+/*---------------------------------*/
+
+main{
+
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/*---------------------------------*/
+
+.oportunitats{
+
+    border: 1px solid black;
+    width: 100%;
+}
+
+.oportunitat{
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.numero{
+
+    width: 20%;
+    height: 80px;
+    text-align: center;
+    font-size: 60px;
+    padding-top: 20px;
+}
+
+.resposta{
+
+    list-style-type: none;
+    width: 60%;
+    height: 80px;
+    padding-top: 20px;
+    background-color: #e1d3d2;
+    margin: 0px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.resposta li{
+
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color:grey;
+}
+
+.resultat{
+
+    list-style-type: none;
+    width: 100px;
+    height: 80px;
+    padding-top: 20px;
+    margin: 0px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.resultat li{
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color:grey;
+}
+
+/*---------------------------------*/
+
+.colors{
+
+    background-color: #efd5c6;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0px 10px 0px;
+}
+.colors li{
+
+    list-style-type: none;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+#blauFosc{background-color: #0d0ef6;}
+#vermell{background-color: #fe1915;}
+#lila{background-color: #731e9d;}
+#taronja{background-color: #fa8c47;}
+#verd{background-color: #4fd98e;}
+#groc{background-color: #fbd441;}
+#blauClar{background-color: #23b8ff;}
+
+/*---------------------------------*/
+
+.botons{
+
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.button {
+
+    background-color: #8d1b1b;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 15px;
+}
+.button:hover {
+    
+    color: #d5a92e;
+}
+
+/*---------------------------------*/
+
+footer{
+
+    background-color:#e1d3d2;
+    width: 90%;
+    margin: 0px auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+}
+
+h6{
+
+    margin: 10px;
+}
