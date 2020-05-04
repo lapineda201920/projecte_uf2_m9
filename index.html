@@ -5,6 +5,138 @@
         <title>Mastermind</title>
 
         <link rel="stylesheet" href="css/main.css">
+        <!-- Afegim la llibreria jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <!-- Afegim la llibreria jQuery-UI -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script> // Utilitzem el drag & drop de jQuery, aquí
+        
+        $(function() {
+
+            // 0 - CREEM UNA CONVINACCIÓ ALEATORIA
+            var conColors = [];
+            var colors = ["rgb(13, 14, 246)", "rgb(254, 25, 21)", "rgb(115, 30, 157)", "rgb(250, 140, 71)", "rgb(79, 217, 142)", "rgb(251, 212, 65)", "rgb(35, 184, 255)"];
+            for (var i = 0; i < 5; i++){
+
+                var nAleatori = Math.floor(Math.random() * 7);
+                if (conColors.includes(colors[nAleatori])){
+                    i--;
+                }
+                else{
+                    conColors.push(colors[nAleatori]);
+                    document.getElementById("solucio0" + (i + 1)).style.backgroundColor = colors[nAleatori]; 
+                }
+            }
+            console.log(conColors);
+            
+            
+
+
+            // 1 - AMB AIXÒ FEM QUE ES POGUIN SELECIONAR ELS <LI> DELS <OL>
+            $( ".colors" ).sortable();
+            $( ".colors" ).disableSelection();
+
+            var contador = 1;
+            var test = "resposta0" + contador;
+            $( "." + test ).disableSelection();
+            $( "." + test ).droppable({
+                drop: function( event, ui ) {
+                    $( this )
+                    .css( "background-color", $(ui.draggable).css("background-color") )
+                    console.log($(ui.draggable).css("background-color"));
+                }
+            });
+            
+            $('#nova').click(function(){
+                
+                location.reload();
+            })
+
+
+            $('#comprovar').click(function(){
+                
+                var respostaColors = [];
+                for (var i = 0; i < 5; i++){
+
+                    respostaColors.push(document.getElementsByClassName(test)[i].style.backgroundColor);
+                }
+
+                var contadorEncertadesColor = 0;
+                var contadorEncertadesColorPosicio = 0;
+
+                for (var y = 0; y < 5; y++){
+
+                    // si està
+                    console.log(conColors[y]);
+                    if(respostaColors.includes(conColors[y])){
+
+                        if (respostaColors[y] != conColors[y]){
+
+                            contadorEncertadesColor++;
+                        }
+                        else{
+
+                            contadorEncertadesColorPosicio++;
+                        }
+                    }
+                }
+                console.log("Encertades color: " + contadorEncertadesColor + ". Encertades color i posicció: " + contadorEncertadesColorPosicio);
+
+                // PINTEM LES BOLES
+                for (var numColorPosicio = 0; numColorPosicio < contadorEncertadesColorPosicio; numColorPosicio++){
+
+                    test = "resultat0" + contador;
+                    document.getElementsByClassName(test)[numColorPosicio].style.backgroundColor = "black";
+                }
+
+                for (var numColor = numColorPosicio; numColor < numColor + contadorEncertadesColor; numColor++){
+
+                    test = "resultat0" + contador;
+                    document.getElementsByClassName(test)[numColor].style.backgroundColor = "white";
+                    document.getElementsByClassName(test)[numColor].style.border = "thin solid black";
+                    contadorEncertadesColor--;
+                }
+
+
+                //  ACTIVEM NOVA FILERA I DESACTIVEM ANTIGUA FILERA SI contadorEncertadesColorPosicio ÉS < 5
+                if(contadorEncertadesColorPosicio < 5 && contador != 9){
+
+                    test = "resposta0" + contador;
+                    $( "." + test ).droppable("option", "disabled", true );
+
+                    contador++;
+                    test = "resposta0" + contador;
+                    
+                    $( "." + test ).disableSelection();
+                    $( "." + test ).droppable({
+                        drop: function( event, ui ) {
+                            $( this )
+                            .css( "background-color", $(ui.draggable).css("background-color") )
+                            console.log($(ui.draggable).css("background-color"));
+                        }
+                    });
+                }
+                else{
+
+                    if (contador == 9){
+
+                        test = "resposta0" + contador;
+                        $( "." + test ).droppable("option", "disabled", true );
+                        alert("Has perdut!");
+                    }
+                    else{
+
+                        alert("Has guanyat!");
+                    }
+                    
+                }
+                
+
+            })
+
+        });
+    </script>
     </head>
 
     <body>
@@ -16,22 +148,207 @@
 
                 <div class="oportunitat">
 
-                    <div class="numero">9</div>
+                    <div class="numero">Resp:</div>
     
-                    <ol class="resposta">
-                        <li id="resposta01"></li>
-                        <li id="resposta02"></li>
-                        <li id="resposta03"></li>
-                        <li id="resposta04"></li>
-                        <li id="resposta05"></li>
+                    <ol class="solucio">
+                        <li id="solucio01"></li>
+                        <li id="solucio02"></li>
+                        <li id="solucio03"></li>
+                        <li id="solucio04"></li>
+                        <li id="solucio05"></li>
                     </ol>
     
                     <ol class="resultat">
-                        <li id="resultat01"></li>
-                        <li id="resultat02"></li>
-                        <li id="resultat03"></li>
-                        <li id="resultat04"></li>
-                        <li id="resultat05"></li>
+                        
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">9</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta09"></li>
+                        <li class="resposta09"></li>
+                        <li class="resposta09"></li>
+                        <li class="resposta09"></li>
+                        <li class="resposta09"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat09"></li>
+                        <li class="resultat09"></li>
+                        <li class="resultat09"></li>
+                        <li class="resultat09"></li>
+                        <li class="resultat09"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">8</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta08"></li>
+                        <li class="resposta08"></li>
+                        <li class="resposta08"></li>
+                        <li class="resposta08"></li>
+                        <li class="resposta08"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat08"></li>
+                        <li class="resultat08"></li>
+                        <li class="resultat08"></li>
+                        <li class="resultat08"></li>
+                        <li class="resultat08"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">7</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta07"></li>
+                        <li class="resposta07"></li>
+                        <li class="resposta07"></li>
+                        <li class="resposta07"></li>
+                        <li class="resposta07"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat07"></li>
+                        <li class="resultat07"></li>
+                        <li class="resultat07"></li>
+                        <li class="resultat07"></li>
+                        <li class="resultat07"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">6</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta06"></li>
+                        <li class="resposta06"></li>
+                        <li class="resposta06"></li>
+                        <li class="resposta06"></li>
+                        <li class="resposta06"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat06"></li>
+                        <li class="resultat06"></li>
+                        <li class="resultat06"></li>
+                        <li class="resultat06"></li>
+                        <li class="resultat06"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">5</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta05"></li>
+                        <li class="resposta05"></li>
+                        <li class="resposta05"></li>
+                        <li class="resposta05"></li>
+                        <li class="resposta05"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat05"></li>
+                        <li class="resultat05"></li>
+                        <li class="resultat05"></li>
+                        <li class="resultat05"></li>
+                        <li class="resultat05"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">4</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta04"></li>
+                        <li class="resposta04"></li>
+                        <li class="resposta04"></li>
+                        <li class="resposta04"></li>
+                        <li class="resposta04"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat04"></li>
+                        <li class="resultat04"></li>
+                        <li class="resultat04"></li>
+                        <li class="resultat04"></li>
+                        <li class="resultat04"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">3</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta03"></li>
+                        <li class="resposta03"></li>
+                        <li class="resposta03"></li>
+                        <li class="resposta03"></li>
+                        <li class="resposta03"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat03"></li>
+                        <li class="resultat03"></li>
+                        <li class="resultat03"></li>
+                        <li class="resultat03"></li>
+                        <li class="resultat03"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">2</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta02"></li>
+                        <li class="resposta02"></li>
+                        <li class="resposta02"></li>
+                        <li class="resposta02"></li>
+                        <li class="resposta02"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat02"></li>
+                        <li class="resultat02"></li>
+                        <li class="resultat02"></li>
+                        <li class="resultat02"></li>
+                        <li class="resultat02"></li>
+                    </ol>
+                </div>
+
+                <div class="oportunitat">
+
+                    <div class="numero">1</div>
+    
+                    <ol class="resposta">
+                        <li class="resposta01"></li>
+                        <li class="resposta01"></li>
+                        <li class="resposta01"></li>
+                        <li class="resposta01"></li>
+                        <li class="resposta01"></li>
+                    </ol>
+    
+                    <ol class="resultat">
+                        <li class="resultat01"></li>
+                        <li class="resultat01"></li>
+                        <li class="resultat01"></li>
+                        <li class="resultat01"></li>
+                        <li class="resultat01"></li>
                     </ol>
                 </div>
 
@@ -48,9 +365,8 @@
             </ol>
 
             <div class="botons">
-                <button class="button">Nova Partida</button>
-                <button class="button">Esborra</button>
-                <button class="button">Comprovar-ho</button>
+                <button class="button" id="nova">Nova Partida</button>
+                <button class="button" id="comprovar">Comprovar-ho</button>
             </div>
         </main>
 

@@ -45,17 +45,17 @@ main{
 .numero{
 
     width: 20%;
-    height: 80px;
+    height: 60px;
     text-align: center;
     font-size: 60px;
     padding-top: 20px;
 }
 
-.resposta{
+.resposta, .solucio{
 
     list-style-type: none;
     width: 60%;
-    height: 80px;
+    height: 60px;
     padding-top: 20px;
     background-color: #e1d3d2;
     margin: 0px;
@@ -63,7 +63,7 @@ main{
     justify-content: space-around;
 }
 
-.resposta li{
+.resposta li, .solucio li{
 
     width: 50px;
     height: 50px;
@@ -75,7 +75,7 @@ main{
 
     list-style-type: none;
     width: 100px;
-    height: 80px;
+    height: 60px;
     padding-top: 20px;
     margin: 0px;
     display: flex;
