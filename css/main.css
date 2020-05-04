@@ -8,6 +8,31 @@
 header{
 
     background-color:#8d1b1b;
+    width: 70%;
+    margin: 0px auto;
+    margin-top: 30px;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+}
+
+.guanyat {
+
+    background-color:green;
+    width: 90%;
+    margin: 0px auto;
+    margin-top: 30px;
+    padding: 20px 0px 20px 0px;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+
+}
+
+.perdut {
+
+    background-color: red;
     width: 90%;
     margin: 0px auto;
     margin-top: 30px;
@@ -21,7 +46,7 @@ header{
 
 main{
 
-    width: 90%;
+    width: 70%;
     margin: 0px auto;
     margin-top: 20px;
     margin-bottom: 20px;
@@ -40,6 +65,14 @@ main{
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+.oportunitat1{
+
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid black;
 }
 
 .numero{
